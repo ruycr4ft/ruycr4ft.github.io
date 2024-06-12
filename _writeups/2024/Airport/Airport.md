@@ -108,25 +108,25 @@ Here we'll notice a bunch of AD common ports, however we'll look at port 8080 cl
 
 Right after hitting http://airport.htb:8080/ we can see an interesting website that seems to host the Airflow software. 
 
-![1](https://github.com/ruycr4ft/ruycr4ft.github.io/assets/CTFs/Airport/1.png)
+![1](https://github.com/ruycr4ft/ruycr4ft.github.io/blob/master/assets/CTFs/Airport/1.png)
 
 Searching for the default credentials for airflow, we will eventually get to [this page](https://stackoverflow.com/questions/66160780/first-time-login-to-apache-airflow-asks-for-username-and-password-what-is-the-u) that says the following: 
 
-![2](https://github.com/ruycr4ft/ruycr4ft.github.io/assets/CTFs/Airport/2.png)
+![2](https://github.com/ruycr4ft/ruycr4ft.github.io/blob/master/assets/CTFs/Airport/2.png)
 
 If we try to enter these credentials into the web, we can notice we get logged in:
 
-![3](https://github.com/ruycr4ft/ruycr4ft.github.io/assets/CTFs/Airport/3.png)
+![3](https://github.com/ruycr4ft/ruycr4ft.github.io/blob/master/assets/CTFs/Airport/3.png)
 
 ## Shell - matthew (WSL)
 
 Scrolling down on the website we can notice the version used by the server:
 
-![4](https://github.com/ruycr4ft/ruycr4ft.github.io/assets/CTFs/Airport/4.png)
+![4](https://github.com/ruycr4ft/ruycr4ft.github.io/blob/master/assets/CTFs/Airport/4.png)
 
 And by looking for CVEs, we'll easily get to [this one](https://github.com/jakabakos/CVE-2022-40127-Airflow-RCE), which will get us remote command execution.
 
-![image-20240329165047448](https://github.com/ruycr4ft/ruycr4ft.github.io/assets/CTFs/Airport/5.png)
+![image-20240329165047448](https://github.com/ruycr4ft/ruycr4ft.github.io/blob/master/assets/CTFs/Airport/5.png)
 
 First of all we will clone the repository into our attacker box with the following command:
 
