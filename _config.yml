@@ -1,25 +1,25 @@
 remote_theme: CaptainIRS/hacker-plus-theme
 
-title:
-author:
-description: 
+title: ruycr4ft
+author: ruycr4ft
+description: Writeups and Security research
 disqus_forum_shortname:
 google_site_verification_content: # The 'content' tag for site verification
 google_analytics: # Your Google Analytics Tracking ID
 
 # Usernames and badges
-htb_badge_no: # Go to the HackTheBox site and copy your ID
+htb_badge_no: 1253217
 thm_badge_no: # Go to https://tryhackme.com/profile -> Public Profile -> Get Badge ID
-show_thm_htb_badges_in_nav: false
-github_username: 
-gitlab:
+show_thm_htb_badges_in_nav: true
+github_username: ruycr4ft
+gitlab: 
 medium:
-stackoverflow:
+stackoverflow: https://stackoverflow.com/users/24158262/ruycr4ft
 hacker_news:
-linkedin:
+linkedin: 
 twitch:
-youtube:
-twitter: 
+youtube: https://www.youtube.com/channel/UCCGmhnq251DVznfzv-RX5bA
+twitter: https://twitter.com/ruycr4ft
 facebook:
 instagram:
 reddit:
