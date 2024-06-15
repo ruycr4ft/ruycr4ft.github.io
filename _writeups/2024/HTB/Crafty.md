@@ -9,10 +9,10 @@ date: 2024-06-15
 comments: true
 ---
 
-## Introduction
+# Introduction
 **Crafty** is a Windows easy difficulty box that features abusing an old version of the Minecraft Server, making it vulnerable to log4j attacks. We start by finding a subdomain named `play.crafty.htb`, which is used by the Minecraft Server to connect players to the server. After abusing the log4j-shell vulnerability, we get to execute commands as the `svc_minecraft` account; we get a shell as that account, that can read Minecraft's Server files. Here we find a plugin named `playercounter-1.0-SNAPSHOT.jar`, that, decompiling it using `jd-gui`, we get a password that's reused for the Administrator account. Let's just jump in.
 
-## Enumeration
+# Enumeration
 As always we start with the `nmap`:
 
 ```bash
@@ -40,12 +40,12 @@ Nmap done: 1 IP address (1 host up) scanned in 39.70 seconds
 
 We only get two ports open, 80 (for web service, probably IIS) and 25565 (the minecraft server default port). Knowing this, we guess that's a server hosting a Minecraft Server that players can connect to and play the game. 
 
-### HTTP - 80/tcp
+## HTTP - 80/tcp
 Taking a look at the website, we just get a static web talking about its services:
 
 ![web](/assets/images/Crafty/1.png)
 
-## Foothold - shell as `svc_minecraft`
+# Foothold - shell as `svc_minecraft`
 Here we can notice the `play` subdomain, so we'll add that into our `/etc/hosts`. However, this is not a web domain; this is used by the backend of the Minecraft Server to allow connection for players. At this point of the box you could try to use the actual Minecraft game (which works), but I'll use [Minecraft Console Client](https://github.com/MCCTeam/Minecraft-Console-Client/releases/download/20240415-263/MinecraftClient-20240415-263-linux-x64). 
 We will also clone the [log4j shell PoC](https://github.com/kozmer/log4j-shell-poc.git), in which we'll edit it to instead running `/bin/sh` it runs `cmd.exe` (since it's a Windows end). 
 First we'll go to `log4j-shell-poc` and run the following command to install all the requirements:
@@ -157,7 +157,7 @@ crafty\svc_minecraft
 c:\users\svc_minecraft\server>
 ```
 
-## Privilege Escalation
+# Privilege Escalation
 With a shell on the box, we can poke around the Minecraft's files. We can see a directory named `plugins`, that contains a `.jar` file:
 
 ```bash
@@ -247,7 +247,7 @@ crafty\administrator
 PS C:\Windows\system32> 
 ```
 
-## Beyond root
+# Beyond root
 As I mentioned before, let's check how the web is treating by running `type C:\inetpub\wwwroot\index.html`:
 
 ```html
@@ -268,5 +268,5 @@ PrintWriter writer = new PrintWriter("C:\\inetpub\\wwwroot\\playercount.txt", "U
 
 So, we wouldn't be able to abuse the jar to get a shell as the account running IIS since it's just static and it basically does nothing.
 
-## Conclusions
+# Conclusions
 I hope you enjoyed the box, I definitely did. This box had such bad ratings because people thought you needed Minecraft to pwn it, but that's incorrect. Here I proved that you only need to download a release from github, and the box it's pretty stable, even though most players said it wasn't. Take care, and I'll see you all next time! 
