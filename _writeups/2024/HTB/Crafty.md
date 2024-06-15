@@ -1,7 +1,7 @@
 ---
 layout: writeup
 category: HTB
-chall_description: https://app.hackthebox.com/machines/Crafty
+chall_description: **Crafty** is a Windows easy difficulty box that features abusing an old version of the Minecraft Server, making it vulnerable to log4j attacks. We start by finding a subdomain named `play.crafty.htb`, which is used by the Minecraft Server to connect players to the server. After abusing the log4j-shell vulnerability, we get to execute commands as the `svc_minecraft` account; we get a shell as that account, that can read Minecraft's Server files. Here we find a plugin named `playercounter-1.0-SNAPSHOT.jar`, that, decompiling it using `jd-gui`, we get a password that's reused for the Administrator account. Let's just jump in.
 points: 0
 solves: 3398
 tags: Windows Minecraft Log4j
