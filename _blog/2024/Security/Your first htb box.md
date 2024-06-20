@@ -1,8 +1,7 @@
 ---
 layout: blog
-category: Content-Creation
-tags: Windows Deserialization
-date: 2024-06-20
+title: Creating your first box for HTB
+tags: Windows Linux Active-Directory Content-Creation SysAdmin
 comments: true
+date: 2024-06-20
 ---
-
